@@ -1,0 +1,38 @@
+extends ./layout.jade
+block contenido
+	script(type="text/javascript").
+		$(document).ready(function(){
+			$("#form_buscar").submit(function(){
+				$(".load").css("display","table");
+			});
+		});
+	.load
+		.image-load
+			img(src="/maskay/resources/ajax-loader.gif",alt="Load",title="Cargando")
+	div(style="background-color: #f1f5c2; margin-left: 0px; margin-right: 0px; padding-top:60px;")
+		form(action="/maskay/buscar",method="post",class="form-inline",id="form_buscar")
+			div(class="form-group")
+				label(for="buscar") Buscar: 
+				input(type="text",name="buscar",placeholder="Buscar", id="buscar", class="form-control", value="#{buscar}", required="true")
+			div(class="form-group")
+				label(for="pagina") En:
+				input(type="text",name="pagina",placeholder="http://udistrital.edu.co", id="pagina", class="form-control", value="#{pagina}", required="true")
+			div(class="form-group")
+				input(type="checkbox",name="pdf_img",value="Si") 
+				| Incluir documentos PDF generados a partir de imágenes 
+				br
+				span(style='font-size: small;') (Recuerde que esto puede aumentar el tiempo de búsqueda)
+			button(type="submit",class="btn btn-primary") Buscar
+			div(class="pull-right hidden-xs")
+				img(src="/maskay/resources/logo.png",style="height: 74px; width: auto;")
+	div(class = "container")
+		h3 Total resultados #{documents.length}
+		div
+			each document, i in documents
+				div(class="row document-spacing")
+					div(class="col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12")
+						h3(class="document-title")
+							a(href=document[0],target=_blank) #{document[0]}
+						span(class="document-count") El texto buscado se encontró #{document[2]} veces en este documento
+						span(class="document-paragraph")= document[1]
+		.push

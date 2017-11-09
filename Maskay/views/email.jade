@@ -1,0 +1,35 @@
+extends ./layout.jade
+block contenido
+	script(type="text/javascript").
+		$(document).ready(function(){
+			$("#form_email").submit(function(){
+				$(".load").css("display","table");
+			});
+		});
+		function openFrame(){
+			$('#mensajeModal').modal('show');
+		}
+	div(class="container")
+		.load
+			.image-load
+				img(src="/maskay/resources/ajax-loader.gif",alt="Load",title="Cargando")
+		div(class="row")
+			h1
+			br
+		div(class="row")
+			div(class="col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12")
+				div(class="text-center")
+					img(src="/maskay/resources/logo.png", style="width:70%;")
+					span(style='display:block;') "Intentar buscar algo" - Quechua
+				div(class="table", style="display:table; width:100%")
+					div(class="table-cell", style="display:table-cell; height: 270px; text-align:center; vertical-align: middle;")
+						span Esta p&aacute;gina jamás ha sido inspeccionada, puede tardar más de lo esperado, por esto deja tu correo (preferiblemente gmail) y te avisaremos cuando la página esté lista para ser consultada.
+						form(action="/maskay/email",method="post",class="form-horizontal",id="form_email")
+							div(class="form-group")
+								label(class="control-label col-sm-2",for="buscar") Email:
+								div(class="col-sm-10")
+									input(type="hidden",name="page",value="#{page._id}")
+									input(type="email",name="email",placeholder="Email", id="email", class="form-control", required="true")
+							div(class="form-group")
+								div(class="col-sm-offset-3 col-sm-6")
+									button(type="submit",class="btn btn-primary btn-block",id="btnEnviar") Buscar

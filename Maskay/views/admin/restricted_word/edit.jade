@@ -1,0 +1,21 @@
+extends ../../layout.jade
+block contenido
+	div(class="container")
+		div(class="row")
+			h1
+			br
+		div(class="row")
+			div(class="col-sm-offset-2 col-sm-8 col-xs-12")
+				div(class="text-center")
+					img(src="/maskay/resources/logo.png", style="width:50%;")
+					span(style='display:block;') "Intentar buscar algo"
+				div(class="table", style="display:table; width:100%")
+					div(class="table-cell", style="display:table-cell; height: 270px; text-align:center; vertical-align: middle;") 
+						form(action="/maskay/admin/restricted_word/#{restricted_word._id}?_method=PUT",method="post",class="form-horizontal")
+							div(class="form-group")
+								label(class="control-label col-sm-3",for="restricted_word") Palabra restringida:
+								div(class="col-sm-9")
+									input(type="text",name="restricted_word",placeholder="Palabra restringida", id="restricted_word", class="form-control", value="#{restricted_word.word}")
+							div(class="form-group")
+								div(class="col-sm-offset-3 col-sm-6")
+									button(type="submit",class="btn btn-primary btn-block") Editar

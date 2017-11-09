@@ -1,0 +1,61 @@
+doctype html
+html(lang="es")
+	head
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", crossorigin="anonymous")
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet",crossorigin="anonymous")
+		link(href="/maskay/style/style.css", rel="stylesheet")
+		title Mask'ay
+		link(rel="shortcut icon" href="/maskay/resources/favicon.ico" type="image/x-icon")
+		meta(http-equiv="Content-Type",content="text/html; charset=utf-8")
+		meta(name="viewport",content="width=device-width, initial-scale=1")
+		link(rel="icon" href="/maskay/resources/favicon.ico" type="image/x-icon")
+		script(type="text/javascript").
+			function openCredits() {
+				$('#credits').modal('show');
+			}
+	body
+		.wrap
+			nav(class="navbar navbar-fixed-top navbar-inverse")
+				div(class="container-fluid")
+					div(class="navbar-header")
+						button(type="button",class="navbar-toggle",data-toggle="collapse",data-target="#mynavbar")
+							span(class="icon-bar")
+							span(class="icon-bar")
+							span(class="icon-bar")
+						a(class="navbar-brand",href="/maskay") MASK'AY
+					div(class="collapse navbar-collapse", id="mynavbar")
+						ul(class="nav navbar-nav")
+							li(class="active")
+								a(href="/maskay") Buscar
+						ul(class="nav navbar-nav navbar-right")
+							li 
+								a(href="/maskay/admin") Admin
+							li 
+								a(href="#", onclick="openCredits()") Créditos
+							li
+								a(href="/maskay/resources/ManualDeUsuario.pdf", target="_blank") Manual
+
+			block contenido
+		div(class="modal fade",id="credits",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button(type="button",class="close", data-dismiss="modal") &times;
+						h4(class="modal-title") Créditos
+					img(src="/maskay/resources/linea.png",style="width:100%; height:auto;")
+					.modal-body
+						p Diseñado y desarrollado por:
+							ul
+								li Andrea Parra
+								li Edison Robles
+						p Grupo de investigación:
+							ul
+								li GesDatos - Universidad Distrital
+						p Directora de proyecto:
+							ul
+								li Ph.D. Sonia Ordoñez Salinas
+					.modal-footer
+						button(type="button",class="btn btn-default", data-dismiss="modal") Listo
+		.footer
+			img(src="/maskay/resources/linea.png", style="width:100%;height:15px; margin: 0px;")

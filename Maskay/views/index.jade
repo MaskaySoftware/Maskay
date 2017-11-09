@@ -1,0 +1,91 @@
+extends ./layout.jade
+block contenido
+	script(type="text/javascript").
+		$(document).ready(function(){
+			var err_mensaje = "#{err_mensaje}";
+			if(err_mensaje.length > 0){
+				$("#mensaje .modal-title").text("Error");
+				$("#mensaje .modal-body p").html(err_mensaje);
+				$('#mensaje').modal('show');
+			}else{
+				$('#intro').modal('show');
+			}
+
+			$("#form_buscar").submit(function(){
+				$(".load").css("display","table");
+			});
+		});
+		function openFrame(){
+			$('#mensajeModal').modal('show');
+		}
+	div(class="container",style="padding-top:20px;")
+		.load
+			.image-load
+				img(src="/maskay/resources/ajax-loader.gif",alt="Load",title="Cargando")
+		div(class="row")
+			h1
+			br
+		div(class="row")
+			div(class="col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12")
+				div(class="text-center")
+					img(src="/maskay/resources/logo.png", style="width:70%;")
+					span(style='display:block;') "Intentar buscar algo" - Quechua
+				div(class="table", style="display:table; width:100%")
+					div(class="table-cell", style="display:table-cell; height: 270px; text-align:center; vertical-align: middle;") 
+						form(action="/maskay/buscar",method="post",id="form_buscar",class="form-horizontal")
+							div(class="form-group")
+								label(class="control-label col-sm-2",for="buscar") Buscar:
+								div(class="col-sm-10")
+									input(type="text",name="buscar",placeholder="Entidad nombrada", id="buscar", class="form-control",required="true")
+							div(class="form-group")
+								label(class="control-label col-sm-2",for="pagina") En:
+								div(class="col-sm-10")
+									input(type="text",name="pagina",placeholder="http://udistrital.edu.co", id="pagina", class="form-control",required="true")
+							div(class="form-group")
+								div(class="col-sm-12",for="pdf_img")
+									input(type="checkbox",name="pdf_img",value="Si") 
+									| Incluir documentos PDF generados a partir de imágenes 
+									br
+									span(style='font-size: small;') (Recuerde que esto puede aumentar el tiempo de búsqueda)
+							div(class="form-group")
+								div(class="col-sm-offset-3 col-sm-6")
+									button(type="submit",class="btn btn-primary btn-block",id="btnEnviar") Buscar
+						span(style='font-size: small;') 
+							a(onclick="openFrame()") ¿Qué es una entidad nombrada?*
+	div(class="modal fade",id="mensaje",role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button(type="button",class="close", data-dismiss="modal") &times;
+					h4(class="modal-title") Error
+				.modal-body
+					p Mensaje
+				img(src="/maskay/resources/linea.png",style="width:100%; height:auto;")
+				.modal-footer
+					button(type="button",class="btn btn-default", data-dismiss="modal") Cerrar
+	div(class="modal fade",id="mensajeModal",role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button(type="button",class="close", data-dismiss="modal") &times;
+					h4(class="modal-title") Entidad nombrada
+				.modal-body
+					iframe(height="370", src="https://www.powtoon.com/embed/dSE7HTfXJf7/", frameborder="0", style="width:100%;")
+				img(src="/maskay/resources/linea.png",style="width:100%; height:auto;")
+				.modal-footer
+					button(type="button",class="btn btn-default", data-dismiss="modal") Cerrar
+	div(class="modal fade",id="intro",role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button(type="button",class="close", data-dismiss="modal") &times;
+					h4(class="modal-title") ¡Bienvenido!
+				img(src="/maskay/resources/linea.png",style="width:100%; height:auto;")
+				.modal-body
+					p Maskay es un buscador para documentos PDF, en el cual el usuario ingresa las entidades nombradas* que desea buscar en un PDF y una URL en la cual se van a buscar todos los documentos PDF.
+					.text-center
+						span(style='font-size: small;')
+							a(onclick="$('#intro').modal('hide');openFrame()") ¿Qué es una entidad nombrada?*
+				img(src="/maskay/resources/linea.png",style="width:100%; height:auto;")
+				.modal-footer
+					button(type="button",class="btn btn-default", data-dismiss="modal") Listo

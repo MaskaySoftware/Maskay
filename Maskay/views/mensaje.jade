@@ -1,0 +1,23 @@
+extends ./layout.jade
+block contenido
+	script(type="text/javascript").
+		function load() {
+			$(".load").css("display","table");
+		}
+		function openFrame(){
+			$('#mensajeModal').modal('show');
+		}
+	div(class="container")
+		.load
+			.image-load
+				img(src="/maskay/resources/ajax-loader.gif",alt="Load",title="Cargando")
+		div(class="row")
+			h1
+			br
+		div(class="row")
+			div(class="col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12")
+				div(class="text-center")
+					img(src="/maskay/resources/logo.png", style="width:70%;")
+					span(style='display:block;') "Intentar buscar algo" - Quechua
+				div(class="table", style="display:table; width:100%")
+					span Gracias por registrar su correo, recibirá una notificación cuando su búsqueda termine. 

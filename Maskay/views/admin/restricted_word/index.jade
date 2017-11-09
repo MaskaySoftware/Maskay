@@ -1,0 +1,30 @@
+extends ../../layout.jade
+block contenido
+	div(class="row",style="background-color: #f1f5c2; margin-left: 0px; margin-right: 0px;")
+		.col-sm-8
+			h1(style="margin: 5px;") Administrador
+		.col-sm-4.logout
+			a(href="/maskay/admin/logout") Cerrar sesión
+	div(class="container")
+		h1.text-center Palabras restringidas
+		div(class="row")
+			.col-sm-offset-3.col-sm-7.col-xs-offset-0.col-xs-12
+				form(action="/maskay/admin/restricted_word",method="post",class="form-inline")
+					.form-group
+						label(class="control-label",for="restricted_word") Nueva palabra restringida:
+						input(type="text",name="restricted_word",placeholder="Palabra restringida", id="restricted_word", class="form-control")
+					.form-group
+						button(type="submit",class="btn btn-primary btn-block") Guardar
+		.row
+			.col-sm-offset-2.col-sm-8
+				for word in words
+					.border-word.tr
+						.row
+							.col-sm-10.col-xs-9
+								h3= word.word
+							.col-sm-2.col-xs-3.margin-top
+								a(href="/maskay/admin/restricted_word/#{word._id}/edit",class="margin-right") 
+									span(class="glyphicon glyphicon-pencil",aria-hidden="true")
+								form(action="/maskay/admin/restricted_word/#{word._id}?_method=DELETE",class="link",method="POST")
+									button(type="submit") 
+										span(class="glyphicon glyphicon-remove",aria-hidden="true")
